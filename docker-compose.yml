@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  backend:
+    image: autoscriber-nestjs
+    build: 
+      dockerfile: Dockerfile
+      context: ./backend
+    volumes:
+      - /app/node_module
+      - ./backend:/app
+    ports:
+      - 3000:3000
+    networks:
+      - autoscriber
+  frontend:
+    image: autoscriber-vuejs
+    build: 
+      dockerfile: Dockerfile
+      context: ./frontend
+    volumes:
+      - /app/node_module
+      - ./frontend:/app
+    ports:
+      - 8080:8080
+    networks:
+      - autoscriber
+networks:
+  autoscriber:
