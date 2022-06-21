@@ -6,7 +6,6 @@ services:
       dockerfile: Dockerfile
       context: ./backend
     volumes:
-      - /app/node_module
       - ./backend:/app
     ports:
       - 3000:3000
@@ -18,7 +17,6 @@ services:
       dockerfile: Dockerfile
       context: ./frontend
     volumes:
-      - /app/node_module
       - ./frontend:/app
     ports:
       - 8080:8080
