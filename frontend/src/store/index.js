@@ -6,7 +6,6 @@ import getters from './getters';
 export default createStore({
   state(){
     return {
-        farmers: [],
         state(){
           return {
               response: [],
