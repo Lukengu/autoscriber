@@ -6,13 +6,9 @@ import getters from './getters';
 export default createStore({
   state(){
     return {
-        state(){
-          return {
-              response: [],
-              loading: true,
-          };
-      },  
-    };
+      response: [],
+      loading: true,
+    }
 },
 getters,
 mutations,
