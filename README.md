@@ -1,23 +1,32 @@
-# AutoScribe Test: Nest JS Backend with Vue JS frontend
+# Autoscriber: symptom search
 
-## Getting started
+A small full-stack TypeScript exercise: type a keyword and get the matching conditions from the
+[NHS inform A–Z of symptoms](https://www.nhsinform.scot/symptoms-and-self-help/a-to-z/).
 
-###### Build the base images
-```bash
-docker-compose build
+![NestJS](https://img.shields.io/badge/NestJS-E0234E?logo=nestjs&logoColor=white)
+![Vue](https://img.shields.io/badge/Vue_3-4FC08D?logo=vuedotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+
+## How it works
+
+```
+Vue 3 + Vuetify + Vuex  ──GET /:keyword──►  NestJS API  ──HTTP──►  nhsinform.scot A–Z page
+      (port 8080)                            (port 3000)            parsed with jsdom
 ```
 
-###### Then youre good to go :
+- **Backend (`backend/`)**: NestJS. `AppController` exposes `GET /:keyword`; `AppService` uses the
+  injected `HttpService` (RxJS) to fetch the A–Z page, parses it with jsdom and returns the
+  condition names that contain the keyword.
+- **Frontend (`frontend/`)**: Vue 3 with Vuetify for the UI and Vuex for state; the search
+  action calls the API and the view renders the results.
+- **Docker Compose** builds and runs both services.
+
+## Run it
+
 ```bash
-docker-compose up
+docker compose build
+docker compose up
 ```
-then navigate http://127.0.0.1:8080/
 
-###### The application
-The NestJs backend receives a string argument on the request and passes to a service where an injected http services  will read the provided url and use jsdom to scrap the information needed
-The VueJS fontend interacts with the backend through
-vuex : a state management library. 
-
-### RTFM !
-- https://docs.nestjs.com/
-- https://vuejs.org/v2/guide/
+Then open http://127.0.0.1:8080.
